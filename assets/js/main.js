@@ -147,7 +147,7 @@ const App = {
    */
   initAffiliateInterceptor() {
     document.addEventListener('click', (e) => {
-      const target = e.target.closest('.affiliate-btn, .cta-btn, a[rel*="sponsored"]');
+      const target = e.target.closest('.affiliate-btn, a[rel*="sponsored"]');
       if (target) {
         const destination = target.getAttribute('href');
         const merchant = target.dataset.merchant || 'General Affiliate';
@@ -155,9 +155,8 @@ const App = {
         // Log outbound click event
         console.log(`[Affiliate Outbound Event] Destination: ${destination} | Merchant: ${merchant}`);
 
-        // Standard safety attributes assertion
+        // Standard safety attributes assertion without opening in a new tab
         target.setAttribute('rel', 'noopener sponsored noreferrer');
-        target.setAttribute('target', '_blank');
       }
     });
   },
